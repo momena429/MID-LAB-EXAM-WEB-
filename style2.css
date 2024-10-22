@@ -1,0 +1,33 @@
+.small-company-logo {
+  height: 50px;
+  width: 200px;
+}
+.flag {
+  width: 35px;
+  height: auto;
+  margin-left: 5px;
+}
+
+.header-icons {
+  font-size: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.category-buttons button {
+  padding: 10px 20px;
+}
+
+.btn-outline-dark {
+  border: 1px solid #000;
+  color: #000;
+}
+
+.btn-outline-dark:hover {
+  background-color: #f4f4f4;
+}
