@@ -1,0 +1,198 @@
+/* Main styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  background-color: white;
+  margin-bottom: 40px;
+  height: 100vh; /* Full viewport height */
+  position: relative;
+}
+
+/* Design header and footer */
+.header-design {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(135deg, #e74c3c 50%, #8a2be2 50%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+/* Add logo styling */
+.logo {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  z-index: 5;
+}
+
+.logo img {
+  width: 200px;
+  height: auto;
+}
+
+.footer-design {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(225deg, #e74c3c 50%, #8a2be2 50%);
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+  z-index: 1;
+}
+
+.left-section {
+  width: 35%;
+  background-color: #8a2be2;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.right-section {
+  width: 60%;
+  padding: 20px;
+  z-index: 2;
+}
+
+.profile-pic img {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.contact-info {
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  color: darkblue;
+  font-weight: bold;
+}
+
+h2 {
+  color: #8a2be2;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: square;
+}
+
+ul li {
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.contact-info h3 {
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Styling for page 2 */
+.page-2 {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.page-break {
+  page-break-before: always;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .header-design,
+  .footer-design {
+    height: 80px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .logo img {
+    width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-design,
+  .footer-design {
+    height: 60px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .contact-info p {
+    font-size: 14px;
+  }
+
+  ul li {
+    font-size: 14px;
+  }
+
+  .logo img {
+    width: 50px;
+  }
+}
+.personal-info {
+  display: none; /* Hide by default */
+  position: absolute; /* Position it relative to the profile picture */
+  background: #fff; /* White background */
+  border: 1px solid #ddd; /* Light border */
+  padding: 10px; /* Padding for inner spacing */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  z-index: 100; /* Ensure it appears above other elements */
+  width: 150px; /* Adjust width as necessary */
+  top: -130%; /* Position it above the profile picture */
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Center it relative to its own width */
+}
+
+.profile-pic {
+  position: relative; /* Allow positioning of the personal info div */
+}
+
+.profile-pic:hover .personal-info {
+  display: block; /* Show on hover */
+}
