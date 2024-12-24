@@ -18,10 +18,16 @@ const path = require("path");
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/Generation', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to database'))
-  .catch(err => console.log(err));
-
+mongoose.connect('mongodb://localhost:27017/Momena', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('Connected to MongoDB!');
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
 // Middleware
 app.use(expressLayouts);
 app.use(express.urlencoded({ extended: true }));

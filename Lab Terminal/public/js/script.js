@@ -13,6 +13,17 @@ function searchProducts() {
   });
 }
 
+function addToWishlist(productId) {
+  fetch(`/wishlist/add/${productId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then(response => response.json())
+    .then(data => alert(data.message))
+    .catch(error => alert('Error adding to wishlist.'));
+}
+
+
 // Add event listener for search input
 document.getElementById('searchInput').addEventListener('input', function () {
   searchProducts();  // Run search every time user types

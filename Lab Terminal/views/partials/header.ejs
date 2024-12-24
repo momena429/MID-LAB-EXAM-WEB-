@@ -54,6 +54,30 @@
             </span>
         </div>
 
+        <!-- Cart and Shipping Info Section -->
+       <div class="col-lg-4 d-flex align-items-center">
+        <!-- Cart Link -->
+        <a href="/wishlist" class="btn btn-outline-dark me-3">View Wishlist 🛒</a>
+
+        <script>
+        function addToWishlist(productId) {
+            fetch(`/wishlist/add-to-wishlist/${productId}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              credentials: 'same-origin' // Ensure the session is sent
+            })
+            .then(response => response.json())
+            .then(data => {
+              alert(data.message); // Display success or error message
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          }
+        </script>
+
        <!-- Cart and Shipping Info Section -->
        <div class="col-lg-4 d-flex align-items-center">
         <!-- Cart Link -->

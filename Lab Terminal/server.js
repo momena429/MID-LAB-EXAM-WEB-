@@ -11,16 +11,24 @@ const Order = require('./models/order.model');
 const categoryRoutes = require("./routes/admin/categoryRoutes");
 const productsRoutes = require("./routes/admin/productsRoutes");
 const ordersRoutes = require('./routes/admin/ordersRoutes');
-const cartRoutes = require('./routes/cartRoutes')
+const cartRoutes = require('./routes/cartRoutes');
+const wishlistRoutes = require('./routes/wishlistRoutes');
 const methodOverride = require("method-override");
 const path = require("path");
 
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/Generation', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to database'))
-  .catch(err => console.log(err));
+mongoose.connect('mongodb://localhost:27017/Momena', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('Connected to MongoDB!');
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
 
 // Middleware
 app.use(expressLayouts);
@@ -37,6 +45,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use('/wishlist', wishlistRoutes);
 
 // Configure session
 app.use(session({

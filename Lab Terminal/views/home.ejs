@@ -11,12 +11,26 @@
             <div class="card-body">
               <h5 class="card-title"><%= product.title %></h5>
               <p class="card-text">PKR <%= product.price %></p>
+
+              <!-- Add to Cart Form -->
               <form action="/cart/add" method="POST">
                 <input type="hidden" name="id" value="<%= product.id %>">
                 <input type="hidden" name="title" value="<%= product.title %>">
                 <input type="hidden" name="price" value="<%= product.price %>">
                 <button type="submit" class="btn btn-primary">Add to Cart</button>
               </form>
+
+              <!-- Add to Wishlist Button (only for logged-in users) -->
+              <% if (user) { %>
+                <button 
+                  class="btn btn-outline-secondary mt-2 add-to-wishlist" 
+                  data-product-id="<%= product.id %>" 
+                  onclick="addToWishlist('<%= product.id %>')">
+                  Add to Wishlist
+                </button>
+              <% } else { %>
+                <p class="mt-2 text-muted">Please log in to add to wishlist</p>
+              <% } %>
             </div>
           </div>
         </div>
@@ -27,7 +41,69 @@
       </div>
     <% } %>
   </div>
+
+  <!-- Wishlist Section (Should be outside product listing) -->
+  <div id="wishlist-section" class="my-4">
+    <h3>Your Wishlist</h3>
+    <div class="row" id="wishlistList">
+      <!-- Wishlist items will be dynamically added here -->
+    </div>
+  </div>
+
 </div>
 
-<!-- Link to external JavaScript file -->
+<!-- External JavaScript -->
 <script src="/js/script.js"></script>
+
+<script>
+  // Function to add product to wishlist
+  function addToWishlist(productId) {
+    fetch(`/wishlist/add-to-wishlist/${productId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin' // Ensure it sends cookies for session authentication
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert(data.message);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+  // Fetch wishlist items and render on the page
+  function loadWishlist() {
+    fetch('/wishlist/wishlist', { method: 'GET', credentials: 'same-origin' })
+      .then(response => response.json())
+      .then(data => {
+        const wishlistSection = document.getElementById('wishlist-section');
+        if (data.wishlist && data.wishlist.length > 0) {
+          let wishlistHtml = '<div class="row" id="wishlistList">';
+          data.wishlist.forEach(item => {
+            wishlistHtml += `
+              <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                  <img class="card-img-top" src="${item.picture}" alt="${item.title}">
+                  <div class="card-body">
+                    <h5 class="card-title">${item.title}</h5>
+                    <p class="card-text">PKR ${item.price}</p>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          wishlistHtml += '</div>';
+          wishlistSection.innerHTML = wishlistHtml;
+        } else {
+          wishlistSection.innerHTML = '<p>Your wishlist is empty.</p>';
+        }
+      })
+      .catch(error => console.error('Error fetching wishlist:', error));
+  }
+
+  // Call this function on page load to show the wishlist
+  window.onload = loadWishlist;
+</script>
