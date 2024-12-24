@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { isAuthenticated } = require('../middlewares/authorization');
+
 // const Wishlist = require('../models/wishlist.model'); // Import the Wishlist model
-const Product = require('../models/product.model'); // Import the Product model (assuming this exists)
+const Product = require('../models/product.model');
+const User = require('../models/user.model');
+const Wishlist = require('../models/wishlist.model');  // Adjust the path if necessary
+
+const { isAuthenticated } = require('../middlewares/authorization');
 
 // Add to Wishlist
 router.post('/wishlist', isAuthenticated, async (req, res) => {
