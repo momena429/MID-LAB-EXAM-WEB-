@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <h2>Checkout</h2>
+    <form action="/cart/checkout" method="POST">
+        <!-- Shipping Address -->
+        <h4>Shipping Address</h4>
+        <div class="mb-3">
+            <label for="street" class="form-label">Street</label>
+            <input type="text" id="street" name="shippingAddress[street]" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" id="city" name="shippingAddress[city]" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="postalCode" class="form-label">Postal Code</label>
+            <input type="text" id="postalCode" name="shippingAddress[postalCode]" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" id="country" name="shippingAddress[country]" class="form-control" required>
+        </div>
+
+        <!-- Payment Method -->
+        <h4>Payment Method</h4>
+        <div class="mb-3">
+            <label for="paymentMethod" class="form-label">Select Payment Method</label>
+            <select id="paymentMethod" name="payment[method]" class="form-select" required>
+                <option value="" disabled selected>Select Payment Method</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="cash_on_delivery">Cash on Delivery</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <h4>Cart Items</h4>
+            <% cart.forEach((item, index) => { %>
+                <div class="mb-3">
+                  <label for="item<%= index %>" class="form-label"><%= item.title %> Quantity</label>
+                  <input type="number" id="item<%= index %>" name="items[<%= index %>][quantity]" class="form-control" min="1" value="<%= item.quantity %>" required>
+                  <input type="hidden" name="items[<%= index %>][productId]" value="<%= item.productId %>">
+                </div>
+              <% }) %>
+        </div>
+          
+        <div class="mb-3">
+            <label for="item1" class="form-label">Item 1 Quantity</label>
+            <input type="number" id="item1" name="items[0][quantity]" class="form-control" min="1" value="1" required>
+            <input type="hidden" name="items[0][productId]" value="item1-id"> <!-- Hidden Product ID -->
+        </div>
+        <div class="mb-3">
+            <label for="item2" class="form-label">Item 2 Quantity</label>
+            <input type="number" id="item2" name="items[1][quantity]" class="form-control" min="1" value="1" required>
+            <input type="hidden" name="items[1][productId]" value="item2-id"> <!-- Hidden Product ID -->
+        </div>
+
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+</div>

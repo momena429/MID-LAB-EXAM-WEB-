@@ -1,0 +1,22 @@
+/* Optional styles for the collapse buttons and sections */
+.collapse .card-body {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Style for buttons */
+.btn {
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    border-radius: 5px;
+}
+
+.btn-lg {
+    font-size: 1.25rem;
+    padding: 12px 35px;
+}
+
+.w-100 {
+    width: 100%;
+}

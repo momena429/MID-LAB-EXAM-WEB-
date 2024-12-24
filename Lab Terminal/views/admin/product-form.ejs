@@ -1,0 +1,34 @@
+<form action="/admin/products/create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="">Title</label>
+        <input name="title" type="text" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="">Description</label>
+        <textarea name="description" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Price</label>
+        <input name="price" type="number" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="file">Picture</label>
+        <input name="file" type="file" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="">Category</label>
+        <select name="category" class="form-control" required>
+            <% categories.forEach(function (category) { %>
+                <option value="<%= category._id %>"><%= category.name %></option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label for="">Featured?
+            <input name="isFeatured" type="checkbox" class="form-check-input" />
+        </label>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info">Create Record</button>
+    </div>
+</form>
